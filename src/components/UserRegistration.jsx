@@ -45,13 +45,13 @@ const UserRegistration = () => {
         style={{ marginBottom: "20px", width: "300px" }}
       />
       <TextField
-        lastname="username"
+        name="username"
         onChange={handleChange}
         placeholder="User Name"
         style={{ marginBottom: "20px", width: "300px" }}
       />
       <TextField
-        password="password"
+        name="password"
         onChange={handleChange}
         placeholder="Password"
         style={{ marginBottom: "20px", width: "300px" }}

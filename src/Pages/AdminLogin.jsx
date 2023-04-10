@@ -16,32 +16,35 @@ const AdminLogin = () => {
     e.preventDefault();
     console.log(formInputs);
   };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <input
-        placeholder="email"
-        type="email"
-        name="email"
-        onChange={handleChange}
-        style={{ marginBottom: "10px", padding: "10px" }}
-      />
-      <input
-        placeholder="password"
-        type="password"
-        name="password"
-        onChange={handleChange}
-        style={{ marginBottom: "10px", padding: "10px" }}
-      />
-      <button
-        type="submit"
-        style={{ backgroundColor: "blue", color: "white", padding: "10px" }}
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        Login
-      </button>
-    </form>
+        <input
+          placeholder="email"
+          type="email"
+          name="email"
+          onChange={handleChange}
+          style={{ marginBottom: "10px", padding: "10px" }}
+        />
+        <input
+          placeholder="password"
+          type="password"
+          name="password"
+          onChange={handleChange}
+          style={{ marginBottom: "10px", padding: "10px" }}
+        />
+        <button
+          type="submit"
+          style={{ backgroundColor: "blue", color: "white", padding: "10px" }}
+        >
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 
