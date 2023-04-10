@@ -1,7 +1,7 @@
 import React from "react";
-import UserRegistration from "../components/UserRegistration";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import UserRegistration from "../../components/UserRegistration/UserRegistration";
+import Navbar from "../../components/Navbar/Navbar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Dashboard = () => {
   return (

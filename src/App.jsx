@@ -1,7 +1,18 @@
-import React from "react";
+import React from 'react'
+import UserTable from './components/UserTable/UserTable'
+
+const App = () => {
+  return (
+    <UserTable/>
+  )
+}
+
+export default App
+
+/*import React from "react";
 import "./App.css";
-import AdminLogin from "./Pages/AdminLogin";
-import Dashboard from "./Pages/Dashboard";
+import AdminLogin from "./Pages/AdminLogin/AdminLogin"
+import Dashboard from "./Pages/Dashboard/Dashboard";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -17,3 +28,4 @@ const App = () => {
 
 export default App;
 
+*/

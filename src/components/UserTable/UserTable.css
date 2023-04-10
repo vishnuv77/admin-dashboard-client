@@ -1,0 +1,43 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  td.active {
+    color: #4caf50;
+  }
+  
+  td.non-active {
+    color: #f44336;
+  }
+  
+  td.action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  td.action .edit-icon {
+    color: #124975;
+    margin-right: 8px;
+  }
+  
+  td.action .delete-icon {
+    color: #f44336;
+  }
+  
