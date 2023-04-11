@@ -1,15 +1,5 @@
-import React from 'react'
-import UserTable from './components/UserTable/UserTable'
 
-const App = () => {
-  return (
-    <UserTable/>
-  )
-}
-
-export default App
-
-/*import React from "react";
+import React from "react";
 import "./App.css";
 import AdminLogin from "./Pages/AdminLogin/AdminLogin"
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -27,5 +17,3 @@ const App = () => {
 };
 
 export default App;
-
-*/

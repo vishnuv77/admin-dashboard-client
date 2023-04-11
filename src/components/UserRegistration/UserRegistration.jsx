@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import axios from "axios";
 
 const UserRegistration = () => {
   const [formInputs, setFormInputs] = useState({
@@ -14,9 +15,20 @@ const UserRegistration = () => {
     setFormInputs({ ...formInputs, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formInputs);
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: `Bearer ${token}` };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/user/register",
+        formInputs,
+        { headers }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

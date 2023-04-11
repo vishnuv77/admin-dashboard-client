@@ -1,1 +1,6 @@
-
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* set the height to 100% of the viewport */
+}
