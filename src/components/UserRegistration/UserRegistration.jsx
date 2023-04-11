@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 
-const UserRegistration = () => {
+const UserRegistration = ({ id }) => {
   const [formInputs, setFormInputs] = useState({
     firstname: "",
     lastname: "",
@@ -13,6 +13,19 @@ const UserRegistration = () => {
     e.preventDefault();
     const { name, value } = e.target;
     setFormInputs({ ...formInputs, [name]: value });
+  };
+  const updateHandleSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const response = await axios.put(
+      `http://localhost:5000/user/update/${id}`,
+      formInputs,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -26,7 +39,9 @@ const UserRegistration = () => {
         { headers }
       );
       console.log(response.data);
-      localStorage.setItem("userId",response.data.id)
+      localStorage.setItem("userId", response.data.id);
+
+      const userId = response.data.id;
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +49,7 @@ const UserRegistration = () => {
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={id?updateHandleSubmit:handleSubmit}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -75,6 +90,7 @@ const UserRegistration = () => {
         variant="contained"
         color="primary"
         style={{ width: "200px" }}
+        onClick={()=>window.location.reload()}
       >
         Register
       </Button>

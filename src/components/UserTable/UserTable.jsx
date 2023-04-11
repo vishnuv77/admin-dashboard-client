@@ -3,7 +3,7 @@ import { Edit, Delete, Search } from "@mui/icons-material";
 import "../UserTable/UserTable.css";
 import axios from "axios";
 
-const UserTable = ({ onAddUser }) => {
+const UserTable = ({ onAddUser, onUpdateUser,setId }) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -15,13 +15,22 @@ const UserTable = ({ onAddUser }) => {
       });
       setUsers(response.data.users); // Set the users state variable to the array of user objects returned by the server
     };
+    console.log(users);
 
     fetchUsers();
   }, []);
 
   const handleAddUser = () => {
     onAddUser();
+    
   };
+
+  const handleUpdateUser = async (id) => {
+    onUpdateUser();
+    setId(id)
+    console.log("id:",id);
+  };
+ 
 
   const handleDeleteUser = async (id) => {
     const token = localStorage.getItem("token");
@@ -34,6 +43,7 @@ const UserTable = ({ onAddUser }) => {
       }
     );
     setUsers(users.filter((user) => user._id !== id));
+    console.log(response);
   };
 
   return (
@@ -67,7 +77,11 @@ const UserTable = ({ onAddUser }) => {
                 <td>{user.lastname}</td>
                 <td>{user.username}</td>
                 <td className="action">
-                  <Edit className="edit-icon" />
+                  <Edit
+                    className="edit-icon"
+                    data-id={user._id}
+                    onClick={() => handleUpdateUser(user._id)}
+                  />
                   <Delete
                     className="delete-icon"
                     data-id={user._id}

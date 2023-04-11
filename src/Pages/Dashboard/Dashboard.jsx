@@ -6,6 +6,9 @@ import UserTable from "../../components/UserTable/UserTable";
 
 const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
+  const [id,setId] =useState("")
+
+
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -27,7 +30,7 @@ const Dashboard = () => {
           }}
         >
           <h1>Admin Dashboard</h1>
-          <UserTable onAddUser={toggleModal} />
+          <UserTable onAddUser={toggleModal} onUpdateUser={toggleModal} setId={setId} />
           {showModal && (
             <div
               style={{
@@ -42,7 +45,7 @@ const Dashboard = () => {
                 alignItems: "center",
               }}
             >
-              <UserRegistration />
+              <UserRegistration  id={id} />
             </div>
           )}
         </div>
