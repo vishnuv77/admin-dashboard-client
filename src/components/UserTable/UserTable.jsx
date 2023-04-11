@@ -23,6 +23,19 @@ const UserTable = ({ onAddUser }) => {
     onAddUser();
   };
 
+  const handleDeleteUser = async (id) => {
+    const token = localStorage.getItem("token");
+    const response = await axios.delete(
+      `http://localhost:5000/user/delete/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    setUsers(users.filter((user) => user._id !== id));
+  };
+
   return (
     <div className="user-table-wrapper" style={{ width: "100%" }}>
       <div className="search-wrapper">
@@ -55,7 +68,11 @@ const UserTable = ({ onAddUser }) => {
                 <td>{user.username}</td>
                 <td className="action">
                   <Edit className="edit-icon" />
-                  <Delete className="delete-icon" />
+                  <Delete
+                    className="delete-icon"
+                    data-id={user._id}
+                    onClick={() => handleDeleteUser(user._id)}
+                  />
                 </td>
               </tr>
             );

@@ -26,6 +26,7 @@ const UserRegistration = () => {
         { headers }
       );
       console.log(response.data);
+      localStorage.setItem("userId",response.data.id)
     } catch (error) {
       console.error(error);
     }
