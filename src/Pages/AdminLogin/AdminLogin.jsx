@@ -4,7 +4,7 @@ import "./AdminLogin.css";
 import axios from "axios";
 import {  useNavigate } from "react-router-dom";
 
-const AdminLogin = () => {
+const AdminLogin = ({setIsLoggedIn}) => {
   const [formInputs, setFormInputs] = useState({
     email: "",
     password: "",
@@ -27,6 +27,7 @@ const AdminLogin = () => {
         console.log(response.data);
         localStorage.setItem("token",response.data.token)
         localStorage.setItem("adminId",response.data.id)
+        setIsLoggedIn(true)
         navigate("/dashboard");
       })
       .catch((err) => {

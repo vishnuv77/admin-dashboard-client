@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserTable from "../../components/UserTable/UserTable";
 
-const Dashboard = () => {
+const Dashboard = ({handleLogout}) => {
   const [showModal, setShowModal] = useState(false);
   const [id,setId] =useState("")
 
@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   return (
     <div style={{ display: "flex" }}>
-      <Navbar style={{ zIndex: "2" }} />
+      <Navbar handleLogout={ handleLogout } style={{ zIndex: "2" }} />
 
       <div style={{ display: "flex", flex: "1" }}>
         <Sidebar style={{ marginTop: "4rem", zIndex: "1" }} />

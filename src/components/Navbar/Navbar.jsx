@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const Navbar = () => {
+
+const Navbar = ({handleLogout}) => {
   const [anchorEl, setAnchorEl] = useState(null);
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -12,10 +14,13 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleLogout = () => {
-    // Implement logout logic here
-  };
+  const handleClickLogout = () =>{
+    handleLogout()
+  }
+/*const handleLogout = () => {
+  
+  };*/ 
+  
 
   return (
     <Box
@@ -54,7 +59,7 @@ const Navbar = () => {
           onClose={handleClose}
         >
           <MenuItem>Settings</MenuItem>
-          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
         </Menu>
       </Box>
     </Box>
