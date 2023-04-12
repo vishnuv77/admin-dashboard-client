@@ -18,17 +18,15 @@ const App = () => {
   return (
     <div className="app-container">
       <Routes>
-        {isLoggedIn ? (
-          <Route
-            path="/dashboard"
-            element={<Dashboard handleLogout={handleLogout} />}
-          />
-        ) : (
-          <Route
-            path="/"
-            element={<AdminLogin setIsLoggedIn={setIsLoggedIn} />}
-          />
-        )}
+        <Route
+          path="/dashboard"
+          element={<Dashboard handleLogout={handleLogout} />}
+        />
+
+        <Route
+          path="/"
+          element={<AdminLogin setIsLoggedIn={setIsLoggedIn} />}
+        />
       </Routes>
     </div>
   );
