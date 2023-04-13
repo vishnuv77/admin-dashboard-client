@@ -3,7 +3,7 @@ import { Edit, Delete, Search } from "@mui/icons-material";
 import "../UserTable/UserTable.css";
 import axios from "axios";
 
-const UserTable = ({ onAddUser, onUpdateUser,setId }) => {
+const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -22,15 +22,13 @@ const UserTable = ({ onAddUser, onUpdateUser,setId }) => {
 
   const handleAddUser = () => {
     onAddUser();
-    
   };
 
   const handleUpdateUser = async (id) => {
     onUpdateUser();
-    setId(id)
-    console.log("id:",id);
+    setId(id);
+    console.log("id:", id);
   };
- 
 
   const handleDeleteUser = async (id) => {
     const token = localStorage.getItem("token");
@@ -76,6 +74,9 @@ const UserTable = ({ onAddUser, onUpdateUser,setId }) => {
                 <td>{user.firstname}</td>
                 <td>{user.lastname}</td>
                 <td>{user.username}</td>
+                <td className={user.status ? "active" : "non-active"}>
+                  {user.status ? "Active" : "Non-active"}
+                </td>
                 <td className="action">
                   <Edit
                     className="edit-icon"

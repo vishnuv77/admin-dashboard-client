@@ -60,15 +60,15 @@
 }
 
 .user-table td.active {
-  color: #19a427; /* added */
+  color: #1dbd2d; /* added */
 }
 
 .user-table td.non-active {
-  color: #ca0d20; /* added */
+  color: #f4182e; /* added */
 }
 
 .user-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2; /* added */
+  background-color: rgb(183, 211, 211); /* added */
 }
 
 .action {

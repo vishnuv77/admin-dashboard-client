@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Checkbox, TextField } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -8,12 +8,19 @@ const UserRegistration = ({ id }) => {
     lastname: "",
     username: "",
     password: "",
+    status: false,
   });
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setFormInputs({ ...formInputs, [name]: value });
   };
+
+  const handleCheckboxChange = (e) => {
+    setFormInputs({ ...formInputs, status: e.target.checked });
+  };
+
   const updateHandleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -49,7 +56,7 @@ const UserRegistration = ({ id }) => {
 
   return (
     <form
-      onSubmit={id?updateHandleSubmit:handleSubmit}
+      onSubmit={id ? updateHandleSubmit : handleSubmit}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -85,12 +92,18 @@ const UserRegistration = ({ id }) => {
         style={{ marginBottom: "20px", width: "300px" }}
         type="password"
       />
+      <label>Click the check box if user is active?</label>
+      <Checkbox
+        checked={formInputs.status}
+        onChange={handleCheckboxChange}
+        style={{ marginBottom: "20px" }}
+      />
       <Button
         type="submit"
         variant="contained"
         color="primary"
         style={{ width: "200px" }}
-        onClick={()=>window.location.reload()}
+        onClick={() => window.location.reload()}
       >
         Register
       </Button>
