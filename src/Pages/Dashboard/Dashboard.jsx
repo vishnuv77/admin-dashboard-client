@@ -3,20 +3,19 @@ import UserRegistration from "../../components/UserRegistration/UserRegistration
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserTable from "../../components/UserTable/UserTable";
+import SubuserTable from "../../components/SubuserTable/SubuserTable";
 
-const Dashboard = ({handleLogout}) => {
+const Dashboard = ({ handleLogout }) => {
   const [showModal, setShowModal] = useState(false);
-  const [id,setId] =useState("")
-
-
+  const [id, setId] = useState("");
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
-
+  const adminId = localStorage.getItem("adminId");
   return (
     <div style={{ display: "flex" }}>
-      <Navbar handleLogout={ handleLogout } style={{ zIndex: "2" }} />
+      <Navbar handleLogout={handleLogout} style={{ zIndex: "2" }} />
 
       <div style={{ display: "flex", flex: "1" }}>
         <Sidebar style={{ marginTop: "4rem", zIndex: "1" }} />
@@ -29,8 +28,20 @@ const Dashboard = ({handleLogout}) => {
             paddingRight: "1rem",
           }}
         >
-          <h1>Admin Dashboard</h1>
-          <UserTable onAddUser={toggleModal} onUpdateUser={toggleModal} setId={setId} />
+          <h1 style={{ marginTop: "10px" }}>Admin Dashboard</h1>
+          {adminId && (
+            <UserTable
+              onAddUser={toggleModal}
+              onUpdateUser={toggleModal}
+              setId={setId}
+            />
+          )}
+
+          <SubuserTable
+            onAddUser={toggleModal}
+            onUpdateUser={toggleModal}
+            setId={setId}
+          />
           {showModal && (
             <div
               style={{
@@ -45,7 +56,7 @@ const Dashboard = ({handleLogout}) => {
                 alignItems: "center",
               }}
             >
-              <UserRegistration  id={id} />
+              <UserRegistration id={id} />
             </div>
           )}
         </div>

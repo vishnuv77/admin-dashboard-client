@@ -1,36 +1,45 @@
 import React from "react";
-import"../Login/Login.css"
+import "../Login/Login.css";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formInputs, setFormInputs] = useState({
-    email: "",
+    username: "",
     password: "",
   });
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setFormInputs({ ...formInputs, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
     console.log(formInputs);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/user/userlogin",
+        formInputs
+      );
+      console.log(response.data);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userId", response.data.id);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="admin-login-form">
-      <input
-        placeholder="email"
-        type="email"
-        name="email"
-        onChange={handleChange}
-      />
-      <input
-        placeholder="password"
-        type="password"
-        name="password"
-        onChange={handleChange}
-      />
+      <h1>User Login</h1>
+      <input placeholder="username" name="username" onChange={handleChange} />
+      <input placeholder="password" name="password" onChange={handleChange} />
       <button type="submit">Login</button>
     </form>
   );

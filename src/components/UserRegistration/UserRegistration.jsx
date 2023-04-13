@@ -11,6 +11,9 @@ const UserRegistration = ({ id }) => {
     status: false,
   });
 
+  const userId = localStorage.getItem("userId");
+  const adminId = localStorage.getItem("adminId");
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -24,8 +27,11 @@ const UserRegistration = ({ id }) => {
   const updateHandleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
+
     const response = await axios.put(
-      `http://localhost:5000/user/update/${id}`,
+      adminId
+        ? `http://localhost:5000/user/update/${id}`
+        : `http://localhost:5000/subuser/update/${id}`,
       formInputs,
       {
         headers: {
@@ -41,7 +47,9 @@ const UserRegistration = ({ id }) => {
     const headers = { Authorization: `Bearer ${token}` };
     try {
       const response = await axios.post(
-        "http://localhost:5000/user/register",
+        adminId
+          ? "http://localhost:5000/user/register"
+          : "http://localhost:5000/subuser/register",
         formInputs,
         { headers }
       );

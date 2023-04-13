@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
@@ -10,7 +11,8 @@ const App = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("adminid");
+    localStorage.removeItem("adminId");
+    localStorage.removeItem("userId")
     setIsLoggedIn(false);
     navigate("/");
   };

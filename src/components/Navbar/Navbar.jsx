@@ -17,10 +17,7 @@ const Navbar = ({handleLogout}) => {
   const handleClickLogout = () =>{
     handleLogout()
   }
-/*const handleLogout = () => {
-  
-  };*/ 
-  
+
 
   return (
     <Box
