@@ -10,7 +10,7 @@ const Login = () => {
     password: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -39,7 +39,12 @@ const Login = () => {
     <form onSubmit={handleSubmit} className="admin-login-form">
       <h1>User Login</h1>
       <input placeholder="username" name="username" onChange={handleChange} />
-      <input placeholder="password" name="password" onChange={handleChange} />
+      <input
+        placeholder="password"
+        type="password"
+        name="password"
+        onChange={handleChange}
+      />
       <button type="submit">Login</button>
     </form>
   );
