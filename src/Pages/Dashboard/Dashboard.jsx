@@ -4,6 +4,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UserTable from "../../components/UserTable/UserTable";
 import SubuserTable from "../../components/SubuserTable/SubuserTable";
+import Menu from "../../components/Menu/Menu"
+import Services from "../../components/Services/Services"
+import Contracts from "../../components/Contracts/Contracts"
+import Announcement from "../../components/Announcement/Announcement"
+
 
 const Dashboard = ({ handleLogout }) => {
   const [showModal, setShowModal] = useState(false);
@@ -58,7 +63,12 @@ const Dashboard = ({ handleLogout }) => {
             >
               <UserRegistration id={id} />
             </div>
+            
           )}
+          <Menu />
+          <Services/>
+          <Contracts />
+          <Announcement/>
         </div>
       </div>
     </div>

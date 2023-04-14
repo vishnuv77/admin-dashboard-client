@@ -20,6 +20,33 @@ const Sidebar = () => {
       <ul>
         <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
           Users
+        </li>
+        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+          Sub Users
+        </li>
+        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+          Menu
+        </li>
+        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+          Services
+        </li>
+        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+          Contracts
+        </li>
+        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+          Announcement
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default Sidebar;
+
+/* <div className="sidebar">
+      <ul>
+        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+          Users
           {showUsersSubMenu && (
             <ul>
               <li>Subusers</li>
@@ -39,8 +66,4 @@ const Sidebar = () => {
           )}
         </li>
       </ul>
-    </div>
-  );
-};
-
-export default Sidebar;
+    </div>*/
