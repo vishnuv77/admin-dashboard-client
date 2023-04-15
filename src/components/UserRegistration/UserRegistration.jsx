@@ -30,8 +30,8 @@ const UserRegistration = ({ id }) => {
 
     const response = await axios.put(
       adminId
-        ? `http://localhost:5000/user/update/${id}`
-        : `http://localhost:5000/subuser/update/${id}`,
+        ? `http://localhost:5000/subuser/update/${id}`
+        : `http://localhost:5000/user/update/${id}`,
       formInputs,
       {
         headers: {
@@ -48,8 +48,8 @@ const UserRegistration = ({ id }) => {
     try {
       const response = await axios.post(
         adminId
-          ? "http://localhost:5000/user/register"
-          : "http://localhost:5000/subuser/register",
+          ? "http://localhost:5000/subuser/register"
+          : "http://localhost:5000/user/register",
         formInputs,
         { headers }
       );
