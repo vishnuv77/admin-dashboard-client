@@ -11,6 +11,7 @@ const AdminLogin = ({ setIsLoggedIn }) => {
     password: "",
   });
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isSubUser, setIsSubUser] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,25 +20,51 @@ const AdminLogin = ({ setIsLoggedIn }) => {
     setFormInputs({ ...formInputs, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:5000/admin/login", formInputs)
-      .then((response) => {
+    // Include isSubUser in the request if it's checked
+    const data = {
+      email: formInputs.email,
+      password: formInputs.password,
+    };
+    if (isSubUser) {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/subuser/login",
+          data
+        );
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("subuserId", response.data.id);
+        setIsLoggedIn(true);
+        navigate("/dashboard");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/admin/login",
+          data
+        );
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("adminId", response.data.id);
         setIsLoggedIn(true);
         navigate("/dashboard");
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log(err);
-      });
+      }
+    }
   };
 
   const handleShowLoginModal = () => {
     setShowLoginModal(!showLoginModal);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setIsSubUser(e.target.checked);
   };
 
   return (
@@ -56,11 +83,20 @@ const AdminLogin = ({ setIsLoggedIn }) => {
           name="password"
           onChange={handleChange}
         />
+
+        <input
+          type="checkbox"
+          id="isSubUser"
+          name="isSubUser"
+          checked={isSubUser}
+          onChange={handleCheckboxChange}
+        />
+        <label htmlFor="isSubUser">
+          Please acknowledge in above check box if you are a sub user
+        </label>
+
         <button type="submit">Login</button>
-        <span
-          className="span"
-          onClick={handleShowLoginModal}
-        >
+        <span className="span" onClick={handleShowLoginModal}>
           Are you a user? login here..
         </span>
       </form>

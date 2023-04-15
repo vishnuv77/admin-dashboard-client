@@ -123,7 +123,7 @@ const Dashboard = ({ handleLogout }) => {
             />
           )}
 
-          {showSubUsers && (
+          {showSubUsers && adminId &&(
             <SubuserTable
               onAddUser={toggleModal}
               onUpdateUser={toggleModal}
