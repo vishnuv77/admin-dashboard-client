@@ -4,10 +4,13 @@ const Announcement = () => {
   return (
     <div
       style={{
-        backgroundColor: "#f8d7da",
-        color: "#721c24",
-        padding: "10px",
-        border: "1px solid #f5c6cb",
+        backgroundColor: "#fce5cd",
+        color: "#663300",
+        padding: "20px",
+        border: "2px solid #ffc107",
+        borderRadius: "10px",
+        boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
+        marginTop: "20px"
       }}
     >
       <h2 style={{ margin: "0 0 10px" }}>Important Announcement</h2>
@@ -25,3 +28,4 @@ const Announcement = () => {
 };
 
 export default Announcement;
+

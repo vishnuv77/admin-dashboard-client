@@ -14,13 +14,28 @@ const Menu = () => {
   };
 
   return (
-    <div>
-      <h2>Menu</h2>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+    <div style={{ marginTop: "20px" }}>
+      <h2 style={{ textAlign: "center" }}>Menu</h2>
+      <ul
+        style={{
+          listStyle: "none",
+ 
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "#f7f7f7",
+          borderRadius: "10px",
+          boxShadow: "0 5px 10px rgba(0, 0, 0, 0.1)",
+          padding: "20px",
+        }}
+      >
         {menuItems.map((item) => (
-          <li key={item.id} style={{ marginBottom: "10px" }}>
-            <span style={{ fontWeight: "bold" }}>{item.name}</span>
-            <span style={{ float: "right" }}>{formatPrice(item.price)}</span>
+          <li
+            key={item.id}
+            style={{ marginBottom: "10px", display: "flex", width: "100%" }}
+          >
+            <span style={{ fontWeight: "bold", flex: 1 }}>{item.name}</span>
+            <span style={{ textAlign: "right" }}>{formatPrice(item.price)}</span>
           </li>
         ))}
       </ul>

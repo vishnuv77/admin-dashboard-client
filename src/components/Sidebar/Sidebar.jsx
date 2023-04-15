@@ -1,39 +1,44 @@
 import React, { useState } from "react";
 import "../Sidebar/Sidebar.css";
 
-const Sidebar = () => {
-  const [showUsersSubMenu, setShowUsersSubMenu] = useState(false);
-  const [showServicesSubMenu, setShowServicesSubMenu] = useState(false);
-
-  const toggleUsersSubMenu = () => {
-    setShowUsersSubMenu(!showUsersSubMenu);
-    setShowServicesSubMenu(false);
-  };
-
-  const toggleServicesSubMenu = () => {
-    setShowServicesSubMenu(!showServicesSubMenu);
-    setShowUsersSubMenu(false);
-  };
-
+const Sidebar = ({ handleVisibility }) => {
   return (
     <div className="sidebar">
       <ul>
-        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+        <li
+          className="sidebar-heading"
+          onClick={() => handleVisibility("users")}
+        >
           Users
         </li>
-        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+        <li
+          className="sidebar-heading"
+          onClick={() => handleVisibility("subusers")}
+        >
           Sub Users
         </li>
-        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+        <li
+          className="sidebar-heading"
+          onClick={() => handleVisibility("menu")}
+        >
           Menu
         </li>
-        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+        <li
+          className="sidebar-heading"
+          onClick={() => handleVisibility("services")}
+        >
           Services
         </li>
-        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+        <li
+          className="sidebar-heading"
+          onClick={() => handleVisibility("contracts")}
+        >
           Contracts
         </li>
-        <li className="sidebar-heading" onClick={toggleUsersSubMenu}>
+        <li
+          className="sidebar-heading"
+          onClick={() => handleVisibility("announcement")}
+        >
           Announcement
         </li>
       </ul>

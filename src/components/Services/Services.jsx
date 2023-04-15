@@ -29,14 +29,47 @@ const Services = () => {
   ];
 
   return (
-    <div>
-      <h2>Our Services</h2>
-      {servicesData.map((service) => (
-        <div key={service.id} style={{ marginBottom: "20px" }}>
-          <h3 style={{ marginBottom: "10px" }}>{service.name}</h3>
-          <p>{service.description}</p>
-        </div>
-      ))}
+    <div style={{ padding: "20px" }}>
+      <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
+        Our Services
+      </h2>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {servicesData.map((service) => (
+          <div
+            key={service.id}
+            style={{
+              width: "23%",
+              padding: "20px",
+              backgroundColor: "#f2f2f2",
+              borderRadius: "10px",
+            }}
+          >
+            <h3
+              style={{
+                marginBottom: "10px",
+                fontSize: "24px",
+                fontWeight: "bold",
+              }}
+            >
+              {service.name}
+            </h3>
+            <p style={{ fontSize: "16px" }}>{service.description}</p>
+            <button
+              style={{
+                marginTop: "20px",
+                padding: "10px 20px",
+                backgroundColor: "#4CAF50",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                fontSize: "16px",
+              }}
+            >
+              Learn More
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -9,24 +9,24 @@ const Contracts = () => {
   ];
 
   return (
-    <div>
-      <h2>Contracts</h2>
+    <div style={{ marginTop: '20px' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Contracts</h2>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
-            <th style={{ border: '1px solid black', padding: '8px' }}>ID</th>
-            <th style={{ border: '1px solid black', padding: '8px' }}>Name</th>
-            <th style={{ border: '1px solid black', padding: '8px' }}>Amount</th>
-            <th style={{ border: '1px solid black', padding: '8px' }}>Status</th>
+            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>ID</th>
+            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Name</th>
+            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Amount</th>
+            <th style={{ border: '1px solid black', padding: '8px', backgroundColor: '#f2f2f2' }}>Status</th>
           </tr>
         </thead>
         <tbody>
           {contractsData.map(contract => (
             <tr key={contract.id}>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{contract.id}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{contract.name}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{contract.amount}</td>
-              <td style={{ border: '1px solid black', padding: '8px' }}>{contract.status}</td>
+              <td style={{ border: '1px solid black', padding: '8px', textAlign: 'center' }}>{contract.id}</td>
+              <td style={{ border: '1px solid black', padding: '8px', textAlign: 'center' }}>{contract.name}</td>
+              <td style={{ border: '1px solid black', padding: '8px', textAlign: 'center' }}>{contract.amount}</td>
+              <td style={{ border: '1px solid black', padding: '8px', textAlign: 'center', color: contract.status === 'Active' ? 'green' : 'red' }}>{contract.status}</td>
             </tr>
           ))}
         </tbody>
