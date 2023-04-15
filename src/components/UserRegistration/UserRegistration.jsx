@@ -6,7 +6,7 @@ const UserRegistration = ({ id }) => {
   const [formInputs, setFormInputs] = useState({
     firstname: "",
     lastname: "",
-    username: "",
+    email: "",
     password: "",
     status: false,
   });
@@ -88,9 +88,9 @@ const UserRegistration = ({ id }) => {
         style={{ marginBottom: "20px", width: "300px" }}
       />
       <TextField
-        name="username"
+        name="email"
         onChange={handleChange}
-        placeholder="User Name"
+        placeholder="email/User Name"
         style={{ marginBottom: "20px", width: "300px" }}
       />
       <TextField

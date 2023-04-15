@@ -35,7 +35,7 @@ const Navbar = ({handleLogout}) => {
       }}
     >
       <Typography variant="h6" component="h1">
-        Dashboard
+        devShip
       </Typography>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Typography variant="body1" sx={{ mr: 1 }}>

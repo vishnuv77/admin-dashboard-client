@@ -70,7 +70,7 @@ const SubuserTable = ({onAddUser,onUpdateUser,setId}) => {
           {users?.map((user, index) => {
             return (
               <tr key={index}>
-                <td>{user.username}</td>
+                <td>{user.email}</td>
                 <td className={user.status ? "active" : "non-active"}>
                   {user.status ? "Active" : "Non-active"}
                 </td>
