@@ -104,20 +104,18 @@ const Dashboard = ({ handleLogout }) => {
   };
   const adminId = localStorage.getItem("adminId");
   const subuserId = localStorage.getItem("subuserId");
+  console.log(subuserId);
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token"); // Get the token from local storage
-      const response = await axios.get(`http://localhost:5000/subuser/getall/${subuserId}`, {
+      const response = await axios.get(`http://localhost:5000/subuser/get/${subuserId}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the request headers
         },
       });
-     // setUsers(response.data.subUsers);
-      response.data.subUsers.forEach((user) => {
-        if (user.menuAccess) setMenuAccess(user.menuAccess);
-        if (user.servicesAccess) setServicesAccess(user.servicesAccess);
-        if (user.contractAccess) setContractAccess(user.contractAccess);
-      }); // Set the users state variable to the array of user objects returned by the server
+      setMenuAccess(response.data.subuser.menuAccess)
+      setServicesAccess(response.data.subuser.servicesAccess)
+      setContractAccess(response.data.subuser.contractAccess)
     };
 
     fetchUsers();
