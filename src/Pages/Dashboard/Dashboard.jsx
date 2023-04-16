@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import UserRegistration from "../../components/UserRegistration/UserRegistration";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -12,6 +13,12 @@ import Announcement from "../../components/Announcement/Announcement";
 const Dashboard = ({ handleLogout }) => {
   const [showModal, setShowModal] = useState(false);
   const [id, setId] = useState("");
+  const [user, setUser] = useState();
+
+  const [menuAccess, setMenuAccess] = useState();
+  const [servicesAccess, setServicesAccess] = useState();
+  const [contractAccess, setContractAccess] = useState();
+
   const [showUsers, setShowUsers] = useState(
     JSON.parse(localStorage.getItem("showUsers")) || false
   );
@@ -96,6 +103,30 @@ const Dashboard = ({ handleLogout }) => {
     setShowModal(!showModal);
   };
   const adminId = localStorage.getItem("adminId");
+  const subuserId = localStorage.getItem("subuserId");
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const token = localStorage.getItem("token"); // Get the token from local storage
+      const response = await axios.get(`http://localhost:5000/subuser/getall/${subuserId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token in the request headers
+        },
+      });
+     // setUsers(response.data.subUsers);
+      response.data.subUsers.forEach((user) => {
+        if (user.menuAccess) setMenuAccess(user.menuAccess);
+        if (user.servicesAccess) setServicesAccess(user.servicesAccess);
+        if (user.contractAccess) setContractAccess(user.contractAccess);
+      }); // Set the users state variable to the array of user objects returned by the server
+    };
+
+    fetchUsers();
+  }, []);
+
+  console.log(menuAccess);
+  console.log(servicesAccess);
+  console.log(contractAccess);
+
   return (
     <div style={{ display: "flex" }}>
       <Navbar handleLogout={handleLogout} style={{ zIndex: "2" }} />
@@ -123,7 +154,7 @@ const Dashboard = ({ handleLogout }) => {
             />
           )}
 
-          {showSubUsers && adminId &&(
+          {showSubUsers && adminId && (
             <SubuserTable
               onAddUser={toggleModal}
               onUpdateUser={toggleModal}
@@ -147,9 +178,9 @@ const Dashboard = ({ handleLogout }) => {
               <UserRegistration id={id} />
             </div>
           )}
-          {showMenu && <Menu />}
-          {showServices && <Services />}
-          {showContracts && <Contracts />}
+          {showMenu && menuAccess && <Menu />}
+          {showServices && servicesAccess && <Services />}
+          {showContracts && contractAccess && <Contracts />}
           {showAnnouncement && <Announcement />}
         </div>
       </div>
