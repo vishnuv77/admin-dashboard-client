@@ -9,6 +9,9 @@ const UserRegistration = ({ id }) => {
     email: "",
     password: "",
     status: false,
+    menuAccess: false,
+    contractAccess: false,
+    servicesAccess: false,
   });
 
   const userId = localStorage.getItem("userId");
@@ -20,8 +23,21 @@ const UserRegistration = ({ id }) => {
     setFormInputs({ ...formInputs, [name]: value });
   };
 
-  const handleCheckboxChange = (e) => {
+const handleStatusChange = (e) => {
     setFormInputs({ ...formInputs, status: e.target.checked });
+  };
+
+  const handleMenuAccessChange = (e) => {
+    setFormInputs({ ...formInputs, menuAccess: e.target.checked });
+  };
+
+  
+  const handleContractAccessChange = (e) => {
+    setFormInputs({ ...formInputs, contractAccess: e.target.checked });
+  };
+
+  const handleServicesAccessChange = (e) => {
+    setFormInputs({ ...formInputs, servicesAccess: e.target.checked });
   };
 
   const updateHandleSubmit = async (e) => {
@@ -103,7 +119,25 @@ const UserRegistration = ({ id }) => {
       <label>Click the check box if user is active?</label>
       <Checkbox
         checked={formInputs.status}
-        onChange={handleCheckboxChange}
+        onChange={handleStatusChange}
+        style={{ marginBottom: "20px" }}
+      />
+      <label>Menu Access</label>
+      <Checkbox
+        checked={formInputs.menuAccess}
+        onChange={handleMenuAccessChange}
+        style={{ marginBottom: "20px" }}
+      />
+      <label>Contract Access</label>
+      <Checkbox
+        checked={formInputs.contractAccess}
+        onChange={handleContractAccessChange}
+        style={{ marginBottom: "20px" }}
+      />
+      <label>Services Access</label>
+      <Checkbox
+        checked={formInputs.servicesAccess}
+        onChange={handleServicesAccessChange}
         style={{ marginBottom: "20px" }}
       />
       <Button
