@@ -15,9 +15,9 @@ const Dashboard = ({ handleLogout }) => {
   const [id, setId] = useState("");
   const [user, setUser] = useState();
 
-  const [menuAccess, setMenuAccess] = useState();
-  const [servicesAccess, setServicesAccess] = useState();
-  const [contractAccess, setContractAccess] = useState();
+  const [menuAccess, setMenuAccess] = useState(true);
+  const [servicesAccess, setServicesAccess] = useState(true);
+  const [contractAccess, setContractAccess] = useState(true);
 
   const [showUsers, setShowUsers] = useState(
     JSON.parse(localStorage.getItem("showUsers")) || false

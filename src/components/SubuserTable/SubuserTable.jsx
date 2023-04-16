@@ -4,7 +4,7 @@ import { Edit, Delete, Search } from "@mui/icons-material";
 import "../SubuserTable/SubuserTable.css";
 import axios from "axios";
 
-const SubuserTable = ({onAddUser,onUpdateUser,setId}) => {
+const SubuserTable = ({ onAddUser, onUpdateUser, setId }) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -32,6 +32,13 @@ const SubuserTable = ({onAddUser,onUpdateUser,setId}) => {
   };
 
   const handleDeleteUser = async (id) => {
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!shouldDelete) {
+      return;
+    }
+
     const token = localStorage.getItem("token");
     const response = await axios.delete(
       `http://localhost:5000/subuser/delete/${id}`,

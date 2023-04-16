@@ -12,7 +12,7 @@ const App = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("adminId");
-    localStorage.removeItem("userId")
+    localStorage.removeItem("subuserId")
     setIsLoggedIn(false);
     navigate("/");
   };

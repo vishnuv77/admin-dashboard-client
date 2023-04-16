@@ -23,7 +23,7 @@ const UserRegistration = ({ id }) => {
     setFormInputs({ ...formInputs, [name]: value });
   };
 
-const handleStatusChange = (e) => {
+  const handleStatusChange = (e) => {
     setFormInputs({ ...formInputs, status: e.target.checked });
   };
 
@@ -31,7 +31,6 @@ const handleStatusChange = (e) => {
     setFormInputs({ ...formInputs, menuAccess: e.target.checked });
   };
 
-  
   const handleContractAccessChange = (e) => {
     setFormInputs({ ...formInputs, contractAccess: e.target.checked });
   };
@@ -116,30 +115,42 @@ const handleStatusChange = (e) => {
         style={{ marginBottom: "20px", width: "300px" }}
         type="password"
       />
-      <label>Click the check box if user is active?</label>
-      <Checkbox
-        checked={formInputs.status}
-        onChange={handleStatusChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <label>Menu Access</label>
-      <Checkbox
-        checked={formInputs.menuAccess}
-        onChange={handleMenuAccessChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <label>Contract Access</label>
-      <Checkbox
-        checked={formInputs.contractAccess}
-        onChange={handleContractAccessChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <label>Services Access</label>
-      <Checkbox
-        checked={formInputs.servicesAccess}
-        onChange={handleServicesAccessChange}
-        style={{ marginBottom: "20px" }}
-      />
+
+      <label style={{ display: "flex", alignItems: "center" }}>
+        <Checkbox
+          checked={formInputs.status}
+          onChange={handleStatusChange}
+          style={{ marginRight: "10px" }}
+        />
+        Click the check box if user is active?
+      </label>
+
+      <label style={{ display: "flex", alignItems: "center" }}>
+        <Checkbox
+          checked={formInputs.menuAccess}
+          onChange={handleMenuAccessChange}
+          style={{ marginRight: "10px" }}
+        />
+        Menu Access
+      </label>
+
+      <label style={{ display: "flex", alignItems: "center" }}>
+        <Checkbox
+          checked={formInputs.contractAccess}
+          onChange={handleContractAccessChange}
+          style={{ marginRight: "10px" }}
+        />
+        Contract Access
+      </label>
+
+      <label style={{ display: "flex", alignItems: "center" }}>
+        <Checkbox
+          checked={formInputs.servicesAccess}
+          onChange={handleServicesAccessChange}
+          style={{ marginRight: "10px" }}
+        />
+        Services Access
+      </label>
       <Button
         type="submit"
         variant="contained"
