@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { Edit, Delete, Search } from "@mui/icons-material";
 import "../SubuserTable/SubuserTable.css";
 import axios from "axios";
+import "jspdf-autotable";
+import jsPDF from "jspdf";
+
 
 const SubuserTable = ({ onAddUser, onUpdateUser, setId }) => {
   const [users, setUsers] = useState([]);
@@ -14,7 +17,9 @@ const SubuserTable = ({ onAddUser, onUpdateUser, setId }) => {
           Authorization: `Bearer ${token}`, // Include the token in the request headers
         },
       });
-      setUsers(response.data.subUsers); // Set the users state variable to the array of user objects returned by the server
+      setUsers(response.data.subUsers);
+      
+     // Set the users state variable to the array of user objects returned by the server
     };
     console.log(users);
 
@@ -51,6 +56,19 @@ const SubuserTable = ({ onAddUser, onUpdateUser, setId }) => {
     setUsers(users.filter((user) => user._id !== id));
     console.log(response);
   };
+  const handleDownload = () => {
+    const doc = new jsPDF();
+
+    // Define the columns and rows for the PDF table
+    const columns = ["Username", "Status"];
+    const rows = users.map((user) => [user.email, user.status ? "Active" : "Non-active"]);
+
+    // Add the table to the PDF document
+    doc.autoTable({ head: [columns], body: rows });
+
+    // Save the PDF file
+    doc.save("subusers.pdf");
+  };
 
   return (
     <div className="user-table-wrapper" style={{ width: "100%" }}>
@@ -64,6 +82,9 @@ const SubuserTable = ({ onAddUser, onUpdateUser, setId }) => {
       </div>
       <button className="add-button" onClick={handleAddUser}>
         Add Sub-user
+      </button>
+      <button className="download-button" onClick={handleDownload}> {/* Add the download button */}
+        Download Form
       </button>
       <table className="user-table" style={{ width: "100%" }}>
         <thead>
