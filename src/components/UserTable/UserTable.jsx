@@ -7,6 +7,7 @@ import jsPDF from "jspdf";
 
 const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token"); // Get the token from local storage
@@ -70,6 +71,14 @@ const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
     doc.save("subusers.pdf");
   };
 
+  const filteredUsers = users.filter((user) => {
+    const searchText = searchTerm.toLowerCase();
+    return (
+      user.username.toString().toLowerCase().includes(searchText) ||
+      user.status.toString().toLowerCase().includes(searchText)
+    );
+  });
+
   return (
     <div className="user-table-wrapper" style={{ width: "100%" }}>
       <div className="search-wrapper">
@@ -78,6 +87,8 @@ const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
           type="text"
           className="search-input"
           placeholder="Search users"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <button className="add-button" onClick={handleAddUser}>
@@ -99,7 +110,7 @@ const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
           </tr>
         </thead>
         <tbody>
-          {users?.map((user, index) => {
+          {filteredUsers?.map((user, index) => {
             return (
               <tr key={index}>
                 <td>{user.firstname}</td>
