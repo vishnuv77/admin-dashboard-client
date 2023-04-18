@@ -85,3 +85,19 @@
   cursor: pointer;
   color: #a10101;
 }
+
+.download-button {
+  background-color: #820cc2;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  float: right;
+  border: none;
+}
+
+.download-button:hover {
+  background-color: #b83fd9;
+  cursor: pointer;
+}

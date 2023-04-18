@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Edit, Delete, Search } from "@mui/icons-material";
 import "../UserTable/UserTable.css";
 import axios from "axios";
+import "jspdf-autotable";
+import jsPDF from "jspdf";
 
 const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
   const [users, setUsers] = useState([]);
@@ -31,6 +33,12 @@ const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
   };
 
   const handleDeleteUser = async (id) => {
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!shouldDelete) {
+      return;
+    }
     const token = localStorage.getItem("token");
     const response = await axios.delete(
       `http://localhost:5000/user/delete/${id}`,
@@ -42,6 +50,24 @@ const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
     );
     setUsers(users.filter((user) => user._id !== id));
     console.log(response);
+  };
+  const handleDownload = () => {
+    const doc = new jsPDF();
+
+    // Define the columns and rows for the PDF table
+    const columns = ["Firstname", "Lastname", "Username", "Status"];
+    const rows = users.map((user) => [
+      user.firstname,
+      user.lastname,
+      user.username,
+      user.status ? "Active" : "Non-active",
+    ]);
+
+    // Add the table to the PDF document
+    doc.autoTable({ head: [columns], body: rows });
+
+    // Save the PDF file
+    doc.save("subusers.pdf");
   };
 
   return (
@@ -56,6 +82,11 @@ const UserTable = ({ onAddUser, onUpdateUser, setId }) => {
       </div>
       <button className="add-button" onClick={handleAddUser}>
         Add User
+      </button>
+      <button className="download-button" onClick={handleDownload}>
+        {" "}
+        {/* Add the download button */}
+        Download Form
       </button>
       <table className="user-table" style={{ width: "100%" }}>
         <thead>
